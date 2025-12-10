@@ -11,7 +11,7 @@
     <div class="center box-border">
       <h1 class="h1-center">cria um login</h1>
       <div class="center">
-        <form action="" method="post">
+        <form action="../../../controller/login/create_login.php" method="post">
           <label for="nome">nome</label><br />
           <input type="text" name="nome" /><br />
           <label for="email">email</label><br />
