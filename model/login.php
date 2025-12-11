@@ -9,17 +9,18 @@ class login{
         $this->nome=$nome;
         $this->email=$email;
         $this->senha=$senha;
-        $this->connect();
+        $this->connects();
     }
-    public function connect(){
-        $this->connect=new mysqli($_ENV["HOST"],$_ENV["USER"],$_ENV["PASSWORD"],$_ENV["DATABASE"]);
-        if($this->connect->connect_error) die("error connect on database");
+    public function connects(){
+        $this->connect=new mysqli($_ENV["HOST"],$_ENV["USER"],$_ENV["PASSWORD"],$_ENV["DATABASE"],$_ENV['PORT']);
+        if($this->connect->connect_error) die("error connect on database".$this->connect->connect_error);
         return $this->connect;
     }
     public function create_login(){
         $password=password_hash($this->senha,PASSWORD_DEFAULT);
         $tmg = $this->connect->prepare("insert into usuario(nome,email,senha)values(?,?,?)");
-         $tmg->bind_param("sss",$this->nome,$this->email,$password);
+        // $tmg = $this->connect->prepare("insert into admins(email,senha)values(?,?)");
+         $tmg->bind_param("ss",$this->email,$password);
         if(!$tmg->execute()) die("commad nao executado");
         $tmg->close();
     }
@@ -42,11 +43,11 @@ class login{
     public function logout(){
         if(!isset($_SESSION))session_start();
         session_destroy();
-        return "../view/index.html";
+        return "../../index.html";
     }
     public function protect(){
         if(!isset($_SESSION))session_start();
-        if(!isset($_SESSION['id'])) die("não nao tem permissão para acessar essa página <a href=\"../view/index.html\">sair</a>");
+        if(!isset($_SESSION['id'])) die("não nao tem permissão para acessar essa página <a href=\"../../index.html\">sair</a>");
     }
     public function close(){
         if($this->connect) $this->connect->close();
