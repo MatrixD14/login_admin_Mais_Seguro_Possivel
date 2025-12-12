@@ -1,4 +1,5 @@
 <?php
+if(session_status()===PHP_SESSION_NONE) session_start();
 include_once "../../model/login.php";
 $login=new login("","","");
 $usr=$_GET['nome'];

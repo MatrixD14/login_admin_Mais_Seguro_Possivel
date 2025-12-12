@@ -1,5 +1,5 @@
 <?php
-    if(!isset($_SESSION))session_start();
-    session_destroy();
-    header('location: ../../../../view/index.html');
-    exit;
+if(session_start()===PHP_SESSION_NONE) session_start();
+session_destroy();
+header('location: ../../../../view/index.html');
+exit;

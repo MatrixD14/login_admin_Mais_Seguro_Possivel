@@ -1,3 +1,7 @@
+<?php
+if(session_status()===PHP_SESSION_NONE) session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +15,14 @@
     <div class="center box-border">
       <h1 class="h1-center">logar na conta</h1>
       <div class="center">
+      <p style="color: red;">
+      <?php
+      if(isset($_SESSION["log_create"])){ 
+        echo $_SESSION["log_create"];
+        session_destroy();
+      }
+      ?>
+      </p>
         <form action="../controller/login/login.php" method="post">
           <label for="email">email</label><br />
           <input type="email" name="email" /><br />

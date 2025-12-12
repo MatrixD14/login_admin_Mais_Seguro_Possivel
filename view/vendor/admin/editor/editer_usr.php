@@ -1,9 +1,13 @@
 <?php
+if(session_status()===PHP_SESSION_NONE) session_start();
+include_once "../../../../model/login.php";
+$login=new login("","","");
+$login->protect();
 $id=$_GET['id'];
-$nome=$_GET['nome'];
-$email=$_GET['email'];
-$senha=$_GET['senha'];
-
+$result=$login->get_id_usr("usuario","id_usuario",$id)->fetch_assoc();
+$nome=$result['nome'];
+$email=$result['email'];
+$senha=$result['senha'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +22,7 @@ $senha=$_GET['senha'];
 <body>
     <div class="center box-border">
         <h1>editor de dados do usuario</h1>
-        <?=$id."".$nome."".$email."".$senha?>
+        <?="user: ".$nome?>
     <div class="box-center">
     <form action="../../../../controller/login/editor.php" method="post" >
         <input type="hidden" name="id" value="<?=$id?>" class="input-p">
@@ -30,9 +34,14 @@ $senha=$_GET['senha'];
         <input type="email" name="email" id="email" value="<?= $email ?>" class="input-p" >
         <br>
         <label for="senha">Senha:</label><br>
-        <input type="password" name="senha" id="senha" value="<?= $senha ?>" class="input-p">
-        <br><br><br>
-        <input type="submit" value="enter" class="bt-enter">    
+        <input type="password" name="senha" id="senha" class="input-p">
+        <br><br>
+        <div class="box-center">
+        <input type="submit" value="enter" class="bt-enter">
+        <p></p>
+        <a href="../admin.php">sair</a>
+        </div>
+        <br>
     </form>
     </div>
     </div>

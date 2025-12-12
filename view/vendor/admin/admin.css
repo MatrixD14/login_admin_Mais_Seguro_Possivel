@@ -2,10 +2,10 @@
   margin: 0;
   padding: 0;
 }
-body {
+body, center-items {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   background-color: black;
 }
 .center {

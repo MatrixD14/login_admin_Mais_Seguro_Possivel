@@ -1,8 +1,8 @@
 <?php
 ob_start();
 include_once "../../model/login.php";
+if(session_start()===PHP_SESSION_NONE) session_start();
 function log_error($log){
-    if(!isset($_SESSION))session_start();
     $_SESSION["log_create"]=$log;
     header('location: ../../view/index.html');
     exit;
@@ -25,8 +25,7 @@ if(isset($Email,$PassWord)){
                 header('location: ../../../../view/vendor/site/site.php');
                 exit;
             }else log_error("senha incorreta");
-        }
-        if($resultAdmin->num_rows===1){
+        }elseif($resultAdmin->num_rows===1){
             $admin=$resultAdmin->fetch_assoc();
             if(password_verify($PassWord,$admin['senha'])){
                 if(!isset($_SESSION)) session_start();
@@ -35,7 +34,7 @@ if(isset($Email,$PassWord)){
                 header('location: ../../../../view/vendor/admin/admin.php');
                 exit;
             }else log_error("senha incorreta");
-        }
+        }else log_error("não existe nenhum registro seu crie um");
         $login->close();
     }
 }
