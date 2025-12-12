@@ -42,6 +42,13 @@ class login{
         $tmg->execute();
         $tmg->close();
     }
+    public function edite_usr($id){
+        $password=password_hash($this->senha,PASSWORD_DEFAULT);
+        $tmg = $this->connect->prepare("update usuario set nome=?, email=?, senha=? where id_usuario=?");
+         $tmg->bind_param("sssi",$this->nome,$this->email,$password,$id);
+        if(!$tmg->execute()) die("commad nao executado");
+        $tmg->close();
+    }
     public function protect(){
         if(!isset($_SESSION))session_start();
         if(!isset($_SESSION['id'])) die("não nao tem permissão para acessar essa página <a href=\"../../index.html\">sair</a>");

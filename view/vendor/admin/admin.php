@@ -30,7 +30,7 @@ $list=$login->list_All("usuario");
                 <td class="info-dado"><?=$lina['nome']?></td>
                 <td class="info-dado"><?=$lina['email']?></td>
                 <td class="info-dado"><?=$lina['senha']?></td>
-                <td><a href="#" class="btn-edite">editer</a></td>
+                <td><a href="editor/editer_usr.php?id=<?=$lina['id_usuario']?>?nome=<?=$lina['nome']?>?email=<?=$lina['email']?>?senha=<?=$lina['senha']?>" class="btn-edite">editer</a></td>
                 <td><a href="../../../controller/login/delete.php?id=<?=$lina['id_usuario']?>?nome=<?=$lina['nome']?>" class="btn-delete">delete</a></td>
             </tr>
         <?php }?>
