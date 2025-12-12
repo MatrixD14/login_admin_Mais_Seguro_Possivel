@@ -38,7 +38,7 @@ class login{
         return $tmg->get_result();
     }
     public function protect(){
-      if(!isset($_SESSION['id'])) die("não nao tem permissão para acessar essa página <a href=\"../../index.html\">sair</a>");
+      if(!isset($_SESSION['id'])) die("não nao tem permissão para acessar essa página <a href=\"../../index.php\">sair</a>");
     }
     public function delete_usr($id){
         $tmg=$this->connect->prepare("delete from usuario where id_usuario=?");

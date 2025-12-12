@@ -14,7 +14,7 @@ if(session_start()===PHP_SESSION_NONE) session_start();
     <div class="center box-border">
       <h1 class="h1-center">cria um login</h1>
       <div class="center">
-      <p style="color: red;align-items:center;">
+      <p style="color: red;">
         <?php
         if(isset($_SESSION["log_create"])){ 
         echo $_SESSION["log_create"];
@@ -32,7 +32,7 @@ if(session_start()===PHP_SESSION_NONE) session_start();
           <div class="box-center">
             <input type="submit" value="enter" class="bt-enter" />
             <p></p>
-            <a href="../../index.html">login</a>
+            <a href="../../index.php">login</a>
           </div>
         </form>
       </div>

@@ -10,5 +10,5 @@ $tmg->bind_param("ss",$email,$password);
 if(!$tmg->execute()) die("commad nao executado");
 //$tmg->close();
 $login->close();
-header('location: ../../index.html');
+header('location: ../../index.php');
         

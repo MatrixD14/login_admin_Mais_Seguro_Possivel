@@ -4,7 +4,7 @@ include_once "../../model/login.php";
 if(session_start()===PHP_SESSION_NONE) session_start();
 function log_error($log){
     $_SESSION["log_create"]=$log;
-    header('location: ../../view/index.html');
+    header('location: ../../view/index.php');
     exit;
 }
 $Email= $_POST["email"];
